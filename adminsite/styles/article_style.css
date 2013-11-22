@@ -1,0 +1,17 @@
+#TitleBox{
+    width:500px;
+    font-size: larger;
+}
+#DateBox{
+    width: 150px;
+    font-size: larger;
+}
+.TCCPaneCenter ul {
+    list-style: none;
+    margin: 0px;
+    padding: 0px;
+    
+}
+.TCCPaneCenter li {
+    margin-top: 10px;
+}

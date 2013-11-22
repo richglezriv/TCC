@@ -1,0 +1,49 @@
+﻿@{
+    Layout = "masterPage.cshtml";
+    Test.Title = "Contacto";
+    String message = String.Empty;
+
+    if (this.IsPost){
+        try{
+            PsichsController.SendContactMail(Request["name"].ToString(), Request["mail"].ToString(), Request["comments"].ToString());
+
+            message = "Mensaje enviado";
+        }
+        catch (Exception ex){
+            message = ex.Message;
+        }
+    }
+}
+<link href="Styles/Contact.css" rel="stylesheet" type="text/css">
+<script src="Scripts/jquery-2.0.3.js" type="text/javascript" ></script>
+<div class="TCCPaneCenter">
+    <h5>Contacto</h5>
+    
+    <form name="frmContact" method="post">
+        <ul>
+            <li><strong>Vis&iacute;tenos En</strong>
+                <p class="AllCaps">Ciudad Satélite</p>
+                <p>Calzada Del Sol 66 <br/>
+                    Colonia Fuentes de Satélite<br/>
+                    C.P. 52998<br/>
+                    Atizapán de Zaragoza, Edo. Mex.<br/></p>
+            </li>
+            <li><strong>Comuníquese Con Nosotros</strong>
+                <p>Puede comunicarse con nosotros en los siguientes horarios:<br/>
+                - Lunes a Viernes de 9:00 a 20:00<br/> 
+                - Sabados de 9:00 a 17:00</p>
+                <p>En nuestros teléfonos de contacto:</p>
+                <p>(0155) 5343 7339</p>
+                <p>(044) 55 9199 6681</p>
+                <p>(044) 55 2972 1846</p>
+            </li>
+            <li><strong>En Línea</strong>
+                <p><input type="text" placeholder="Nombre" class="NormalText" id="name" name="name" required title="Nombre de contacto"/></p>
+                <p>    <input type="email" placeholder="Correo Electrónico" name="mail" class="NormalText" required="required" id="mail"/></p>
+                <p>    <textarea placeholder="Comentarios" class="MultipleLines" name="comments" id="comments"></textarea></p>
+                <p><input type="submit" id="sendContact" title="Enviar" name="submit" value="Enviar" onclick="$('#sendContact').hide();" class="SubmitButton"></p>
+                <p>@message</p>
+            </li>
+        </ul>
+    </form>
+</div>

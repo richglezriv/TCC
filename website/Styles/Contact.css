@@ -1,0 +1,42 @@
+body{
+    background-image:url('../Images/ocean4.png');background-repeat:repeat-x;background-position:top;
+}
+.TCCPaneCenter ul {
+    list-style: none;
+    width: 100%;
+    margin: 0px;
+    padding: 0px;
+    
+}
+.TCCPaneCenter li{
+    display: inline-block;
+    width: 33%;
+    vertical-align: text-top;
+}
+.SubmitButton{
+    padding: 2px 15px 2px 15px; 
+	box-shadow: 3px 3px 1px #B1B1B1; 
+	border: 1px solid #AD235E; 
+	border-radius: 3px; 
+	text-transform: capitalize; 
+	text-decoration: none; 
+	color: #7D9C9F; 
+	font-weight: bold; 
+	background-color: #AD235E;
+}
+.SubmitButton:hover{
+	transition:All 0.5s ease;
+	color:#ECECEC;
+}
+.AllCaps{
+    font-variant: small-caps;
+    font-weight: bolder;
+}
+.NormalText{
+    width: 250px;
+}
+.MultipleLines{
+    width: 250px;
+    height: 90px;
+    font-family:Calibri, Arial, Tahoma, Verdana, sans-serif;	
+}

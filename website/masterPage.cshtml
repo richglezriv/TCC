@@ -1,0 +1,63 @@
+﻿<!DOCTYPE html>
+
+<html lang="es-mx">
+    <head>
+        <meta charset="utf-8" />
+        <title>@Test.Title</title>
+        <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+        <link href="Styles/site_style.css" rel="stylesheet" type="text/css">
+    </head>
+    <body>
+        <div class="UpdatePanelCSS">
+            <div id="background"></div>
+            <div id="legend">
+                PROCESANDO...
+            </div>
+        </div>
+        <header class="TCCHeader">
+	        <img src="Images/psich_logo.png" alt="TCC" style="width:150px;height:150px;float:left;">
+	        <div style="float:right;width:500px;">
+		        <h1>Psicoterapia Cognitivo 
+		        Conductual</h1></div>
+	        <nav>
+	        <ul>
+		        <li><a href="Default.cshtml">Inicio</a></li>
+		        <li><a href="WhoWeAre.cshtml">¿ Quienes Somos ?</a></li>
+		        <li><a href="Services.cshtml">Servicios</a></li>
+		        <li><a href="Contact.cshtml">Contacto</a></li>
+	        </ul></nav>
+        </header>
+
+
+        <div class="TCCPaneMain">
+        @RenderBody()
+        </div>
+
+        <footer class="TCCFooter">
+	        <div class="TCCFooterDiv"><strong>Servicios</strong>
+		        <ul>
+			        <li><a href="Services.cshtml#anxiety">Ansiedad, Depresión...</a></li>
+			        <li>&nbsp;</li>
+			        <li><a href="Services.cshtml#institute">Instituciones escolares</a></li>
+		        </ul>
+	        </div>
+	        <div class="TCCFooterDiv"><strong>Contacto</strong>
+		        <ul>
+			        <li>Calzada del sol 66 <br/>Fuentes de Satélite<br/>CP 52998<br/>Atizapán de Zaragoza, Edo. Mex.</li>
+			        <li>&nbsp;</li>
+			        <li>t. 0155 5343 7339</li>
+			        <li>m. 044 442 249 8212</li>
+		        </ul>
+	
+	        </div>
+	        <div class="TCCFooterDiv">
+		        <strong>En L&iacute;nea</strong>
+		        <ul>
+			        <li><a href="#"><img src="Images/facebook.png" alt="facebook"></a>&nbsp;&nbsp;<a href="#"><img src="Images/twitter.png" alt="twitter"></a></li>
+		        </ul>
+	        </div>
+            <div><a href="http://admin.terapiacognitivoconductual.com.mx">[administracion]</a></div>
+        </footer>
+
+    </body>
+</html>

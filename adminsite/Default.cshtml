@@ -1,0 +1,39 @@
+﻿@{
+    Layout = "master.cshtml";    
+    String errorMessage = String.Empty;
+    
+    if (IsPost){
+        
+        //rgonzalez
+        if (WebSecurity.Login(Request["login"], Request["password"], false)){
+            //WebSecurity.ChangePassword("grivera", "rgonzalez", "psigloria");
+            //WebSecurity.ChangePassword("lpuente", "rgonzalez", "psililiana");
+            Response.Redirect("Main.cshtml");
+        }
+        else{
+            errorMessage = "El usuario y/o contraseña son incorrectos, verifique.";
+        }
+        
+                
+    }
+}
+
+
+<div class="TCCPaneCenter">
+    <form name="frmLogin" method="post">
+        <div class="TCCLoginPane">
+            <div style="width: 100%;text-align: center; background-color:#523742;color:#84596B; font-size: larger; font-weight: bold;">
+                ACCESO</div>
+        
+            <ul>
+                <li><input type="text" id="login" required name="login" title="Nombre de usuario" class="BigText" placeholder="Nombre de usuario"></li>
+                <li><input type="password" id="password" required name="password" class="BigText" title="Contraseña" placeholder="Contraseña"></li>
+            </ul>
+            <div class="TCCLoginPaneBottom">
+                <input type="submit" id="cmdLogin" class="DefaultButton" value="Validar">
+                <br/>
+                <span class="ErrorNotification">@errorMessage</span>
+            </div>
+        </div>
+    </form>
+</div>

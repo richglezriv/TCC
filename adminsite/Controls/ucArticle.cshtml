@@ -1,0 +1,45 @@
+﻿@{
+    int userId = Request.QueryString["u"] != null ? int.Parse(Request.QueryString["u"].ToString()) : 0;
+    String errorMessage = String.Empty;
+    List<Article> articles = new List<Article>();
+
+    //if it is to delete
+    if (Request.QueryString["d"] != null){
+        AdminController control = new AdminController();
+        try{
+        control.DeleteArticle(int.Parse(Request.QueryString["d"]));
+        }
+        catch (Exception ex){
+            errorMessage = ex.Message;
+        }
+    }
+
+    //display user articles
+    if (userId != 0){
+        articles = Article.GetBy(userId);
+    }
+
+    
+}
+
+<table style="width: 70%;" id="userArticles">
+        <tr class="TableHeader">
+            <td style="width: 10%">&nbsp;</td>
+            <td style="width: 30%">Fecha</td>
+            <td  style="width: 50%">Título</td>
+            <td style="width: 10%">Eliminar</td>
+        </tr>
+    @{
+        foreach(Article a in articles){
+            <tr>
+                <td><a href="Article.cshtml?id=@a.Id"><img src="Images/ico_Edit.png" alt="editar"></a></td>
+                <td>@a.Created.ToString("dd MMMM yyyy")</td>
+                <td>@a.Title</td>
+                <td><input type="checkbox" name="checkDelete" value="@a.Id"></td>
+            </tr>        
+        }
+    }    
+    
+    
+    </table>
+<span>@errorMessage</span>

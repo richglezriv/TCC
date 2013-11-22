@@ -1,0 +1,163 @@
+﻿/** Elements **/
+body{
+	background-color:#CECFCE;
+	font-family:Calibri, Arial, Tahoma, Verdana, sans-serif;	
+	min-width:935px;
+	margin:0 auto;
+	background-image:url('../Images/ocean3.png');background-repeat:repeat-x;background-position:top;
+}
+h1{
+	color: #AD235E;
+	text-transform: none;
+	font-variant: small-caps;
+    text-shadow: 2px 2px 2px #FFFFFF;
+
+}
+h2{
+
+	margin-top:0px;
+	padding-top:0px;
+	color: #AD235E;
+	text-transform: none;
+	font-variant: small-caps;
+	padding-left:5px;
+
+}
+h3, h4, h5, h6{
+	color: #AD235E;
+	text-transform: none;
+	font-variant: small-caps;
+	padding-left:5px;
+
+}
+p{
+	color:#84596B;
+	padding-left:10px;
+}
+ul{
+    color:#84596B;
+    
+}
+/** Classes */
+.TCCHeader{
+	color:#84596B;
+	height:120px;
+	width:75%;
+	margin:0 auto;
+	
+}
+.TCCHeader nav{
+	width:510px;float:right;
+	margin-top:10px;
+}
+
+.TCCHeader ul{
+	padding:0px;
+	margin:0px;
+	list-style:none;
+}
+.TCCHeader li{
+	float:left;text-align:center;
+}
+
+.TCCHeader a {
+	text-decoration:none;
+	color:#523742;
+	font-size:large;
+	padding:5px 20px 5px 20px;
+	
+	transition:All 0.5s ease;
+	-webkit-transition:All 0.5s ease;
+	-moz-transition:All 0.5s ease;
+	-o-transition:All 0.5s ease;
+}
+.TCCHeader a:hover{
+	border-radius:2px;
+	background-color:#523742;
+	color:#84596B;
+}
+
+
+.TCCPaneMain{
+	
+	background-color:#ECECEC;padding-bottom:10px;margin:0 auto;padding-top:15px;
+}
+.TCCPaneCenter{
+	width:75%;
+	margin:0 auto;
+    color:#84596B;
+}
+.TCCLoginPane{
+    width: 300px; 
+    margin: 0 auto; 
+    margin-top:100px;
+}
+.TCCLoginPane ul {
+    list-style: none;
+}
+.TCCLoginPane li {
+    margin: 15px 0px 15px 0px;
+}
+.BigText{
+    font-size: larger;
+    border-radius: 3px;
+    width: 210px;
+}
+.DefaultButton{
+    padding: 2px 15px 2px 15px; 
+	box-shadow: 3px 3px 1px #B1B1B1; 
+	border: 1px solid #AD235E; 
+	border-radius: 3px; 
+	text-transform: capitalize; 
+	text-decoration: none; 
+	color: #7D9C9F; 
+	font-weight: bold; 
+	background-color: #AD235E;
+    min-width: 120px;
+}
+.DefaultButton:hover {
+    transition:All 0.5s ease;
+	color:#ECECEC;
+}
+.TCCLoginPaneBottom{
+    width: 100%; 
+    text-align: center;
+    height: 80px; 
+}
+.ErrorNotification{
+    color: #AD235E;
+    font-size: smaller;
+    
+}
+.TableHeader{
+    font-weight: bolder;
+    font-size: larger;
+}
+.UpdatePanelCSS{
+    position: absolute; 
+    display: none;
+    height:100%; 
+    width: 100%;
+    z-index: 1;
+}
+.UpdatePanelCSS #background {
+    opacity: .3; 
+    background-color: #808080;
+    height:100%; 
+    width: 100%;
+}
+.UpdatePanelCSS #legend {
+    font-size: x-large;
+    font-weight:bold;
+    padding-top:30px;
+    position: absolute; 
+    top: 30%;
+    left: 38%; 
+    background-color: #4c454d; 
+    border-radius: 5px;
+    width:30%; 
+    height: 10%; 
+    color: #E6E6E6; 
+    text-align: center;
+    border: 5px solid #E6E6E6;
+}

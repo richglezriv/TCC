@@ -1,0 +1,32 @@
+﻿<!DOCTYPE html>
+
+<html lang="es-mx">
+    <head>
+        <meta charset="utf-8" />
+        <title></title>
+        <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+        <link href="Styles/site_style.css" rel="stylesheet" type="text/css">
+    </head>
+    <body>
+        <div class="UpdatePanelCSS">
+            <div id="background"></div>
+            <div id="legend">
+                PROCESANDO...
+            </div>
+        </div>
+        <header class="TCCHeader">
+	        <img src="Images/psich_logo.png" alt="TCC" style="width:150px;height:150px;float:left;">
+	        <div style="float:right;width:500px;">
+		        <h1>Administrador TCC</h1></div>
+	        
+            @RenderSection("menu",false)
+            
+        </header>
+
+
+        <div class="TCCPaneMain">
+        @RenderBody()
+        </div>
+
+    </body>
+</html>

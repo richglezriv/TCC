@@ -1,0 +1,65 @@
+﻿@{
+    if (!WebSecurity.IsAuthenticated){
+        Response.Redirect("Default.cshtml");
+    }
+    
+    Layout = "master.cshtml";    
+    if (Request.QueryString["s"] != null && Request.QueryString["s"].Equals("out")){
+        WebSecurity.Logout();
+        Response.Redirect("Default.cshtml");
+    }
+    
+}
+
+@section menu{ 
+
+    @{
+    if (WebSecurity.IsAuthenticated){
+    <nav>
+	            <div style="width: 100%; text-align: right; ">
+                    <a href="Main.cshtml?s=out">Salir</a><br/><br/>
+                    <strong>[Usuario] @AdminController.GetUserName(WebSecurity.CurrentUserId)</strong>
+                </div>
+            </nav>
+    }
+
+    }
+}
+<script src="Scripts/jquery-2.0.3.js" type="text/javascript" ></script>
+<div class="TCCPaneCenter">
+    <br/>
+    <h2>Administración De Articulos</h2>
+    <input type="hidden" name="usrId" id="usrId" value="@WebSecurity.CurrentUserId">
+    <div id="articles" style="margin: 15px 0px 25px 0px;"></div>
+
+    <input type="button" value="Nuevo" class="DefaultButton" onclick="window.location.href = 'article.cshtml';">
+    &nbsp;&nbsp;
+    <input type="button" value="Eliminar" class="DefaultButton" onclick="getElementsToDelete();">&nbsp;&nbsp;
+    
+</div>
+<script>
+    var userId = document.getElementById("usrId");
+    var posting = $.post("Controls/ucArticle.cshtml?u=" + userId.value);
+
+    posting.done(function (data) {
+        $("#articles").html(data);
+    });
+
+    function getElementsToDelete() {
+        var elements = document.getElementsByName('checkDelete');
+        var posting;
+        $(".UpdatePanelCSS").show();
+        for (var i = 0; i < elements.length; i++) {
+            if (elements[i].checked) {
+                //deletes the article
+                posting = $.post("Controls/ucArticle.cshtml?u=" + userId.value + "&d=" + elements[i].value);
+                posting.done(function (data) {
+                    $("#articles").html(data);
+                });
+            }
+        }
+        $(".UpdatePanelCSS").hide();
+
+    }
+
+</script>

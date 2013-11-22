@@ -1,0 +1,128 @@
+﻿@{
+    
+    Layout = "masterPage.cshtml";
+    Test.Title = "Test De Evaluación";    
+    String typeOf = Request.QueryString["t"] != null ? Request.QueryString["t"].ToString() : String.Empty;
+    List<Questionnaire> questionnaire = null;
+    String evaluation = String.Empty;
+
+    if (typeOf != String.Empty)
+    {
+        questionnaire = PsichsController.GetBy(typeOf);
+    }
+
+    if (this.IsPost){
+        
+        String controlName;
+        evaluation = "Usted no sufre de ningún padecimiento sin embargo, le recomendamos realizar una cita para evaluar algún síntoma.";
+        foreach (Questionnaire item in questionnaire){
+            controlName = String.Format("rad_{0}", item.Id);
+            if (Request[controlName].Equals("YES")){
+                evaluation = "Usted sufre de algún padecimiento psicológico, le recomendamos realizar una cita para evaluarlo a profundidad.";
+            }
+        }
+    }
+
+    
+}
+<script src="Scripts/jquery-2.0.3.js" type="text/javascript" ></script>
+<script src="Scripts/jquery.jcarousel.js" type="text/javascript"></script>
+<div class="TCCPaneCenter">
+    <h5>Test De Evaluación</h5>
+    <p>Seleccione el tipo de evaluación</p>
+    <div>
+        <form name="frmTest" method="post">
+
+            <div class="TEST_Evaluation_Q" id="TestEvaluation">
+                <ul id="questionnaire">
+                    @{
+                                      if (typeOf != String.Empty){
+                                          foreach  (Questionnaire q in PsichsController.GetBy(typeOf)){
+                                            <li class="TEST_Evaluation_Q_Item"><strong>@q.Question</strong></li>
+                                            <li class="TEST_Evaluation_Q_Item"><input type="radio" value="YES" name="rad_@q.Id" />SI
+                                                &nbsp;&nbsp;<input type="radio" value="NO" name="rad_@q.Id"/>NO</li>  
+                                          }
+
+                                      }
+                    }
+                </ul>
+            </div>
+            @{
+                if (typeOf != String.Empty){
+                    <div class="TEST_Evaluation_Q_Ctrl" id="TestToolbox">
+                        <ul>
+                            <li><a href="#" onclick="$('#TestEvaluation').jcarousel('scroll', '-=2');">[ anterior ]</a>&nbsp;</li>
+                            <li>|&nbsp;<a href="#" onclick="$('#TestEvaluation').jcarousel('scroll', '+=2');">[ siguiente ]</a>&nbsp;</li>
+                            <li>|&nbsp;<a href="#" onclick="submitForm();" >[ evaluar ]</a></li>
+                        </ul>
+                    </div>
+                    }
+            }
+            <div class="TEST_Evaluation_R">
+                <p>
+                    @evaluation
+                </p>
+            </div>
+            <ul class="TEST_List">
+                <li id="depress"><a href="TestEval.cshtml?t=Depress" onclick="$('.UpdatePanelCSS').show();"><img src="Images/button.png" alt="Depresión"/>
+                    <h4 id="depress_title" >Depresion</h4></a></li>
+                <li id="sexuality"><a href="TestEval.cshtml?t=Sexuality" onclick="$('.UpdatePanelCSS').show();" ><img src="Images/button.png" alt="Sexualidad"/>
+                    <h4 id="sex_title" >Sexualidad</h4></a></li>
+                <li id="tdah"><a href="TestEval.cshtml?t=TDAH" onclick="$('.UpdatePanelCSS').show();" ><img src="Images/button.png" alt="TDAH"/>
+                    <h4 id="tdah_title" >TDAH</h4></a></li>
+            </ul>
+        </form>
+    </div>
+
+</div>
+
+<script>
+    $('#depress').on('mouseover', function (event) { $('#depress_title').show(); });
+    $('#depress').on('mouseout', function (event) { $('#depress_title').hide(); });
+
+    $('#sexuality').on('mouseover', function (event) { $('#sex_title').show(); });
+    $('#sexuality').on('mouseout', function (event) { $('#sex_title').hide(); });
+
+    $('#tdah').on('mouseover', function (event) { $('#tdah_title').show(); });
+    $('#tdah').on('mouseout', function (event) { $('#tdah_title').hide(); });
+
+    $(document).ready(function () {
+        $('#TestEvaluation').jcarousel();
+
+    });
+
+    function submitForm() {
+        //$('frmTest').submit();
+        //this.submitForm();
+        frmTest.submit();
+    }
+
+    function getQuestionnaire(subject) {
+
+
+        var posting = $.post("Controls/Questions.cshtml?t=" + subject);
+
+        posting.done(function (data) {
+
+            var content = $(data).find("#questionnaire");
+            $("#TestEvaluation").html(data);
+
+            $(document).ready(function () {
+                $('#TestEvaluation').jcarousel();
+
+            });
+
+            $('#TestEvaluation').jcarousel('reload');
+
+            $('#TestToolbox').show();
+
+
+        })
+
+        var depress = document.getElementById('depress');
+        depress.disabled = true;
+
+    }
+
+
+</script>

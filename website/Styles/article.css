@@ -1,0 +1,39 @@
+body{
+    background-image:url('../Images/ocean4.png');background-repeat:repeat-x;background-position:top;
+}
+.ArticlePane {
+    width: 60%;
+    color:#84596B;
+}
+.RightPane{
+    width: 35%;
+    float: right;
+}
+.RightPane ul {
+    list-style: none;
+    width: 100%;
+    margin: 0px;
+    padding: 0px;
+    margin-top: 20px;
+}
+.RightPane li{
+    height: 60px;
+}
+.RightPane label{
+    width: 100%;
+    float: left;
+    font-weight: bolder;
+}
+.RightPane a{
+    text-decoration: none;
+    color:#84596B;
+}
+.RightPane a:hover {
+    text-decoration: underline;
+}
+.SmallLink{
+    text-decoration: none;
+    color:#84596B;
+    font-size: smaller;
+    padding-left: 10px;
+}

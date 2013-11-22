@@ -1,0 +1,80 @@
+﻿@{
+    Layout = "masterPage.cshtml";
+    Test.Title = "Articulos de interés";  
+
+    List<Article> articles = Article.GetAll();
+    List<Article> list = new List<Article>();
+    System.Random r = new System.Random();  
+    int articleId = Request.QueryString["a"] != null ? 
+        int.Parse(Request.QueryString["a"].ToString()) : 0;
+    Article inView = null;
+    
+        
+    //sets the article to display
+    if (articleId.Equals(0))
+    {
+        inView = articles[r.Next(0, articles.Count-1)];
+    }
+    else{
+        inView = (from a in articles where a.Id.Equals(articleId) select a).SingleOrDefault<Article>();
+    }
+
+    //defines which article should be removed from the list
+    
+    foreach (Article a in articles){
+        if (!a.Id.Equals(inView.Id)){
+            list.Add(a);
+        }
+    }
+
+}
+<link href="Styles/article.css" rel="stylesheet" type="text/css">
+<script src="Scripts/jquery-2.0.3.js" type="text/javascript" ></script>
+
+<div class="TCCPaneCenter" >
+    <input type="hidden" id="inView" value="@articleId" name="inView"/>
+    <h5>Articulos de Inter&eacute;s</h5>
+    <div class="RightPane">
+        Otros articulos
+        <ul>
+            @{
+                foreach (Article a in list){
+                    <li><label><a href="#" onclick="getArticle('@a.Id');"># @a.Title</a></label>
+                    <span class="SmallLink">@a.Created.ToString("dd/MM/yyyy")</span>
+                </li>
+                }
+            }
+            
+        </ul>
+    </div>
+    
+    <div class="ArticlePane" id="ArticlePane">
+    @{
+        if (inView != null){
+            HtmlString s = new HtmlString(inView.Content);
+            
+            <article title="@inView.Title" pubdate="@inView.Created" id="articleDisplayed">
+                <h3>@inView.Title</h3>
+                <address>@inView.UserRegistered <br/>@inView.Created.ToString("dd/MMM/yyyy")</address>
+                <br/>
+                @s
+            </article>        
+        }
+    }
+    </div>
+</div>
+<script>
+
+    function getArticle(id) {
+        $(".UpdatePanelCSS").show();
+        
+        var post = $.post("Articles.cshtml?a=" + id);
+        post.done(function (data) {
+            var content = $(data).find("#articleDisplayed");
+            $("#ArticlePane").html(content);
+            $(".UpdatePanelCSS").hide();    
+        })
+    }    
+
+
+</script>

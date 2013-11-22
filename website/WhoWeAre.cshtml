@@ -1,0 +1,102 @@
+﻿@{
+  Layout = "masterPage.cshtml";
+  Test.Title = "Quienes Somos";
+  var psich = Request.QueryString["ps"];
+
+}
+
+<div class="TCCPaneCenter">
+		<h5>¿ Quienes Somos ?</h5>
+
+        @{ if (psich == null)
+            {
+                <ul class="WWA_All_Psichs">
+				    <li class="WWA_All_Psichs_li">
+					    <a href="WhoWeAre.cshtml?ps=1" style="text-decoration: none;"><h4 style="margin:0px;padding:0px; padding-right:30px; display:inline;">Psic. Liliana Puente Flores</h4>
+					    <br />
+					    <img src="Images/psich01.png" alt="image"></a>
+                        <p><i>"La vida es buena cuando uno la acepta"</i></p>
+				    </li>
+				    <li class="WWA_All_Psichs_li">
+                        <a href="WhoWeAre.cshtml?ps=2" style="text-decoration: none;">
+					    <h4 style="margin:0px;padding:0px; padding-right:30px;display:inline;">Psic. Gloria Rivera Vargas</h4><br/>
+					    <img src="Images/psich02.png" alt="image"></a>
+					    <p><i>"Nunca será tarde para experimentar ese nuevo camino"</i></p>
+
+				    </li>
+			    </ul>    
+                <div class="TCCToolBoxH">
+                    <ul>
+                        <li><a href="TestEval.cshtml" >Test De Evaluaci&oacute;n&nbsp;&nbsp;&nbsp;<img src="Images/test.png" alt="test"></a></li>
+				        <li><a href="Articles.cshtml">Articulos De Inter&eacute;s&nbsp;&nbsp;&nbsp;<img src="Images/article.png" alt="article"></a></li>
+                    </ul>
+                </div>
+            }
+        }
+			
+        @{ if (psich !=  null && psich.ToString().Equals("1")) {
+               <div class="TCCToolBoxV">
+                    <ul>
+                        <li><a href="WhoWeAre.cshtml?ps=2">Psic Gloria Rivera Vargas</a></li>
+                        <li><a href="TestEval.cshtml" >Test De Evaluaci&oacute;n&nbsp;&nbsp;&nbsp;<img src="Images/test.png" alt="test"></a></li>
+				        <li><a href="#" >Articulos De Inter&eacute;s&nbsp;&nbsp;&nbsp;<img src="Images/article.png" alt="article"></a></li>
+                    </ul>
+                </div>
+                <div class="TCCDiv">
+		        <h2 style="margin:0px;padding:0px; padding-right:30px; display:inline;">Psic. Liliana Puente Flores</h2>
+					        <br />
+					        <img src="Images/psich01.png" alt="image">
+
+                            <p>Siempre ha tenido la inquietud de ayudar a la gente, de tener esperanza en que se puede mejorar la vida pero para que esto suceda hay que trabajar, esforzarse y luchar.</p>
+
+                            <p>Estudió la carrera de lic. En Psicología en la UNAM, en la FES Izatacala hace veinticinco años.</p>
+
+                            <p>En un unicio trabajó con pacientes en la clinica universitaria de salud integra C.U.S.I y en su consultorio particular, tiempo después fué analista de investigación de mercados médicos donde estudiaba el comportamientos de los médicos en sus diferentes especialidades para así poder abordar las necesidades de atención de sus pacientes en cuanto a la farmacología. Este trabajo le proporcionó grandes conocimientos médicos lo que le permitió comprender y entender mas las situaciones medicas de los pacientes.</p>
+
+                            <p>Posteriormente trabajó en el centro de rehabilitación integral C.R.I. atendiendo casos especialies en la consulta externa y elaborando programas de enseñanza para el área clínica también. En esta experiencia pudo aprender los problemas existentes de neurodesarrollo, así como las consecuencias o secuelas de traumatismos y también abordar las terapias grupales donde se ubicaba a los familiares y al mismo paciente acerca de su padecimiento como por ejemplo:</p>
+                            <ul>
+	                            <li>Parálisis cerebral infantil</li>
+	                            <li>Síndrome de Down</li>
+	                            <li>Autismos</li>
+	                            <li>Enfermedades terminales</li>
+	                            <li>Psicosis</li>
+                            </ul>
+
+                            <p>La primera especialidad que realizó fué la de sexualidad humana lo que le permitió comprender aún más la conducta de las mujeres sobretodo, pued son ellas las que buscan ayuda ante una problemática de pareja entre otras cosas.</p>
+
+                            <p>La segunda especialidad fué la de psicoterapia cognitivo conductual donde le proporcionó un conocimiento global e integral de su formación académica además de la actualización que todo profesional debe realizar a través de su experiencia y pueda ofrecerle a los pacientes las mejores y nuevas alternativas de tratamiento para una mejoría pronta y eficaz.</p>
+
+                            <p>Así pues ha tenido participación, trabajos y también diversos cursos y congresos que le han permitido adquirir los conocimientos necesarios para comprometerse aún mas con su profesión y vocación de servicio</p>
+		        </div>       
+           }   
+        else if (psich != null && psich.ToString().Equals("2")){
+            <div class="TCCToolBoxV">
+                    <ul>
+                        <li><a href="WhoWeAre.cshtml?ps=1">Psic. Liliana Puente Flores</a></li>
+                        <li><a href="TestEval.cshtml" >Test De Evaluaci&oacute;n&nbsp;&nbsp;&nbsp;<img src="Images/test.png" alt="test"></a></li>
+				        <li><a href="#" >Articulos De Inter&eacute;s&nbsp;&nbsp;&nbsp;<img src="Images/article.png" alt="article"></a></li>
+                    </ul>
+                </div>
+            <div class="TCCDiv">
+		        <h2 style="margin:0px;padding:0px; padding-right:30px;display:inline;">Psic. Gloria Rivera Vargas</h2><br/>
+			    <img src="Images/psich02.png" alt="image">
+		        <p>Decide estudiar Psicología en la Universidad del Valle de México, Campus Lomas Verdes, como la conclusión a un proyecto personal en el área de la salud, tras haber suspendido sus estudios en la Facultad de Medicina de la Universidad Veracruzana y con los conocimientos de la Psicología para poder trabajar para el bienestar de las personas. Desde los primeros años en la universidad y motivada por aprender asiste a horas práctica en el Centro de Desarrollo Humano, CDH, para ir adentrándose en el interesante mundo de la Psicología. La Especialidad en Terapia Familiar Breve Sistémica en CEDIPSO, complementan su interés en la búsqueda de la solución de los diferentes momentos del Ciclo Vital de las Familias.</p>
+
+                <p>Conoce el dolor físico y emocional al realizar su Servicio Social en el Hospital de Traumatología y Ortopedia Lomas Verdes en el Piso de Quemados, situación que la hace confirmar de la importancia del Psicólogo en las Instituciones Públicas, donde también lleva a cabo una investigación del por qué y como prevenir las quemaduras.</p>
+
+                <p>Asiste a un entrenamiento en el Mental Research Institute, en Palo Alto California, donde observa a los grandes maestros de este modelo en su desempelo con individuos, familias y parejas.</p>
+
+                <p>Atendiendo consulta de manera privada se integra a la Empresa PAE, Programa de Asistencia al Empleado, donde forma parte de la red de terapeutas que dan atención a las Empresas Cliente dentro de procesos de Terapia Breve. Estudia en el Centro de Estudios Superiores Monte Féniz un diplomado en trastornos de la Conducta Alimentaria teniendo así mas recursos en ésta área de las conductas adictivas y formando parte de los Terapeutas Referidores. Integra a estas actividades conferencias en temas de interés para los empleados de la empresa a las que presta el servicio. Posteriormente s eintegra a la empresa ICAS donde forma parte del equipo de terapeutas, integrada también a un proyecto de deshabitacuación tabáquica en las empresas libres de tabaco.</p>
+
+                <p>Hoy en día está intefrada al grupo de terapeutas del CETTAD, Centro Especializado en los Trastornos Ansiosos Depresivos y de la Personalidad donde estudió el Diplomado en Terapias Cognitivas, combinando las actividades psicoterapéuticas en esta clínica y de manera privada así como también impartiendo conferencias.</p>
+
+                <p>La psicología es algo que dice no tiene límites y siempre habrá algo nuevo por atender y entender.</p>
+		    </div>
+        }
+           }    
+		
+	
+		
+		
+		
+	</div>

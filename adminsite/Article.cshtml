@@ -1,0 +1,90 @@
+﻿@{
+    Layout = "master.cshtml";
+    String errorMessage = String.Empty;
+    String message = String.Empty;
+    String disabled = String.Empty;
+    int articleId = Request["id"] != null ? int.Parse(Request["id"].ToString()) : 0;
+    Article article = new Article();
+    String articleDate = String.Empty;
+
+    if (articleId != 0){
+        article = Article.Get(articleId);
+        articleDate = article.Created.ToString("dd-MM-yyyy");
+    }
+
+    if (this.IsPost){
+        DateTime defaultDate;
+        if (!DateTime.TryParse(Request["DateBox"], out defaultDate)){
+            defaultDate = DateTime.Now;
+        }
+
+        article.Title = Request["TitleBox"];
+        article.Created = defaultDate;
+        article.UserRegistered = WebSecurity.CurrentUserId.ToString();
+        article.Content = Request.Unvalidated("txtArticle");
+
+        try{
+            AdminController control = new AdminController();
+            control.RegisterArticle(article);
+            message = "Artículo registrado con éxito.";
+            disabled = "disabled";
+        }
+        catch (Exception ex)
+        {
+            errorMessage = ex.Message;
+        }
+    }
+}
+<link rel="stylesheet" href="styles/article_style.css" type="text/css" />
+<script src="Scripts/jquery-2.0.3.js" type="text/javascript" ></script>
+<script src="Scripts/picker.js"></script>
+<script src="Scripts/picker.date.js" type="text/javascript"></script>
+<link rel="stylesheet" href="styles/default.css" id="theme_base">
+<link rel="stylesheet" href="styles/default.date.css" id="theme_date">
+<script src="//tinymce.cachefly.net/4.0/tinymce.min.js"></script>
+@section menu{ 
+
+    @{
+    if (WebSecurity.IsAuthenticated){
+            <nav>
+	            <div style="width: 100%; text-align: right; ">
+                    <a href="Main.cshtml">Articulos</a>
+                    <a href="Main.cshtml?s=out">Salir</a><br/><br/>
+                    <strong>[Usuario] @AdminController.GetUserName(WebSecurity.CurrentUserId)</strong>
+                </div>
+            </nav>
+    }
+
+    }
+}
+<form name="frmArticle" method="post">
+
+<div class="TCCPaneCenter">
+    <br />
+    <h2>Registro de Articulo</h2>
+    <ul>
+        <li><input type="text" value="@article.Title" name="TitleBox" id="TitleBox" placeholder="Titulo" title="Titulo del articulo" required></li>
+        <li><input type="text" value="@articleDate" name="DateBox" id="DateBox" placeholder="Fecha" title="Fecha de creación" required></li>
+    </ul>
+    <p>@message</p>
+    <h5>Texto Del Articulo</h5>
+    <textarea id="txtArticle" name="txtArticle" >@article.Content</textarea>
+    <p></p>
+    <input type="submit" value="Registrar" id="cmdRegister" class="DefaultButton" onclick="$('.UpdatePanelCSS').show();">
+    <br/><br/><span>@errorMessage</span>
+</div>
+
+</form>
+<script>
+        $(".UpdatePanelCSS").hide();
+        $('#DateBox').pickadate({
+            monthsFull: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio','Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'],
+            monthsShort: ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul', 'Ago', 'Sep', 'Oct', 'Nov', 'Dic'],
+            weekdaysFull: ['Domingo', 'Lunes', 'Martes', 'Miercoles', 'Jueves', 'Viernes', 'Sabado'],
+            weekdaysShort: ['Dom', 'Lun', 'Mar', 'Mie', 'Jue', 'Vie', 'Sab'],
+            today:'Hoy', clear:'Limpiar', format: 'dd-mm-yyyy'});
+
+        tinymce.init({selector:'textarea'});
+
+    
+</script>
